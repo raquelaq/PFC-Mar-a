@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿Qué es el arte?</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#1a1021;font-family:Arial,Helvetica,sans-serif}
+  body{overflow-x:hidden}
+
+  .hero{
+    height:220vh;
+    position:relative;
+  }
+
+  .stage{
+    position:sticky;
+    top:0;
+    height:100svh;
+    overflow:hidden;
+    isolation:isolate;
+    background:#221326;
+  }
+
+  /* Fondo mucho más fiel a las imágenes:
+     se ven casi tal cual, con movimiento suave y scroll parallax */
+  .blob{
+    position:absolute;
+    inset:-10%;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    will-change:transform,opacity,filter;
+  }
+
+  .bg1{
+    z-index:0;
+    background-image:url("arte-bg-1.png");
+    transform:scale(1.22);
+    opacity:1;
+    filter:saturate(1.08) contrast(1.02);
+  }
+
+  .bg2{
+    z-index:1;
+    background-image:url("arte-bg-2.png");
+    transform:scale(1.18);
+    opacity:.88;
+    mix-blend-mode:lighten;
+    filter:saturate(1.12);
+  }
+
+  .bg3{
+    z-index:2;
+    background-image:url("arte-bg-3.png");
+    transform:scale(1.20);
+    opacity:.78;
+    mix-blend-mode:screen;
+    filter:saturate(1.08);
+  }
+
+  .veil{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 65%, rgba(255,255,255,.10), transparent 30%),
+      linear-gradient(to bottom, rgba(35,16,38,.10), rgba(35,16,38,.18));
+  }
+
+  .grain{
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+    opacity:.10;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  h1{
+    position:absolute;
+    z-index:6;
+    left:7vw;
+    right:7vw;
+    top:50%;
+    transform:translateY(-50%);
+    margin:0;
+    color:#f3e61b;
+    font-size:clamp(3.25rem,16vw,6.4rem);
+    line-height:.90;
+    letter-spacing:-.06em;
+    font-weight:900;
+    text-wrap:balance;
+    text-shadow:0 2px 14px rgba(44,7,56,.18);
+    will-change:transform,opacity;
+  }
+
+  .hint{
+    position:absolute;
+    z-index:6;
+    left:0;
+    right:0;
+    bottom:max(22px, env(safe-area-inset-bottom));
+    text-align:center;
+    color:#f3e61b;
+    font-size:.76rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    opacity:.78;
+  }
+
+  .hint::after{content:" ↓"}
+
+  .after{
+    min-height:100svh;
+    background:#f7f1ee;
+    color:#1f1722;
+    padding:12vh 8vw;
+  }
+
+  .after p{
+    margin:0;
+    max-width:14em;
+    font-size:1.55rem;
+    line-height:1.08;
+    font-weight:700;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .blob,h1{transition:none;animation:none}
+  }
+</style>
+</head>
+<body>
+<section class="hero" id="hero">
+  <div class="stage">
+    <div class="blob bg1" id="bg1"></div>
+    <div class="blob bg2" id="bg2"></div>
+    <div class="blob bg3" id="bg3"></div>
+    <div class="veil"></div>
+    <div class="grain"></div>
+    <h1 id="title">¿Qué es<br>el arte?</h1>
+    <div class="hint" id="hint">Desliza</div>
+  </div>
+</section>
+
+<section class="after">
+  <p>Una pregunta que cambia según quién mira.</p>
+</section>
+
+<script>
+const hero = document.getElementById('hero');
+const bg1 = document.getElementById('bg1');
+const bg2 = document.getElementById('bg2');
+const bg3 = document.getElementById('bg3');
+const title = document.getElementById('title');
+const hint = document.getElementById('hint');
+
+function updateScene(){
+  const rect = hero.getBoundingClientRect();
+  const max = hero.offsetHeight - window.innerHeight;
+  const p = Math.max(0, Math.min(1, -rect.top / max));
+
+  // Movimiento orgánico con scroll, pero sin deformar demasiado
+  bg1.style.transform = `scale(${1.22 + p*0.08}) translate(${p*-2.5}%, ${p*2.5}%)`;
+  bg2.style.transform = `scale(${1.18 + p*0.10}) translate(${p*4.5}%, ${p*-1.8}%)`;
+  bg3.style.transform = `scale(${1.20 + p*0.07}) translate(${p*-3.2}%, ${p*-4.8}%)`;
+
+  // Cruce de intensidades para que el fondo se sienta vivo y siga pareciendo las referencias
+  bg1.style.opacity = 1 - p*0.10;
+  bg2.style.opacity = 0.88 + p*0.08;
+  bg3.style.opacity = 0.78 + p*0.12;
+
+  const lift = p * 90;
+  title.style.transform = `translateY(calc(-50% - ${lift}px)) scale(${1 + p*0.05})`;
+  title.style.opacity = 1 - Math.max(0,(p-0.72)/0.28);
+  hint.style.opacity = Math.max(0,0.78-p*2.2);
+}
+
+window.addEventListener('scroll', updateScene, {passive:true});
+window.addEventListener('resize', updateScene);
+updateScene();
+</script>
+</body>
+</html>
