@@ -236,17 +236,17 @@
     background:#fff;
   }
 
-  /* ===== VERSIÓN MÓVIL ===== */
+  /* ===== VERSIÓN MÓVIL CORREGIDA ===== */
   @media (max-width: 600px){
 
     html,body{
       background:#ececec;
     }
 
-    /* En móvil reducimos el recorrido del hero para que no quede
-       tanto vacío antes del vídeo */
+    /* El hero ocupa exactamente una pantalla:
+       eliminamos el bloque gris extra que aparecía debajo */
     .page{
-      min-height:112svh;
+      min-height:100svh;
     }
 
     .hero{
@@ -254,72 +254,83 @@
     }
 
     .copy{
-      top:8svh;
-      left:7vw;
-      right:5vw;
-      line-height:.92;
+      top:5.5svh;
+      left:6vw;
+      right:6vw;
+      width:88vw;
+      line-height:.90;
     }
 
     .copy span{
-      font-size:clamp(2.8rem, 12vw, 4.2rem);
-      margin-bottom:.18em;
+      display:block;
+      margin-bottom:.12em;
+      font-size:clamp(2.25rem, 10.5vw, 3.45rem);
+      max-width:100%;
     }
 
-    /* Cintas adaptadas al formato vertical */
+    /* "CONSTRUCTION" necesita algo menos de tamaño para entrar completa */
+    .copy span:last-child{
+      font-size:clamp(2rem, 9.4vw, 3.1rem);
+      letter-spacing:-.055em;
+      white-space:nowrap;
+    }
+
+    /* Cintas adaptadas a pantalla estrecha */
     .tape{
-      left:-38vw;
-      width:185vw;
-      height:23vw;
-      min-height:78px;
-      max-height:98px;
+      left:-42vw;
+      width:190vw;
+      height:22vw;
+      min-height:72px;
+      max-height:90px;
     }
 
     .tape-a{
-      top:43svh;
-      transform:rotate(-31deg);
+      top:45svh;
+      transform:rotate(-30deg);
     }
 
     .tape-b{
-      top:55svh;
-      left:-30vw;
-      width:170vw;
-      height:22vw;
-      min-height:74px;
-      max-height:94px;
-      transform:rotate(10deg);
+      top:57svh;
+      left:-34vw;
+      width:176vw;
+      height:21vw;
+      min-height:70px;
+      max-height:88px;
+      transform:rotate(9deg);
     }
 
     .tape-track{
-      gap:2rem;
-      padding:0 1.2rem;
+      gap:1.7rem;
+      padding:0 1rem;
     }
 
     .tape-word{
-      font-size:clamp(1.15rem, 5.7vw, 1.65rem);
+      font-size:clamp(1rem, 5.2vw, 1.45rem);
     }
 
     .intersection-glow{
-      left:27vw;
-      top:51svh;
-      width:52vw;
-      height:32vw;
+      left:28vw;
+      top:52svh;
+      width:48vw;
+      height:28vw;
     }
 
     .hint{
-      bottom:max(14px, env(safe-area-inset-bottom));
-      font-size:.68rem;
+      bottom:max(10px, env(safe-area-inset-bottom));
+      font-size:.64rem;
     }
 
-    /* Mucho menos espacio en blanco entre hero y vídeo */
+    /* Solo dejamos una separación muy pequeña antes del vídeo */
     .white-space{
-      height:18svh;
+      height:4svh;
     }
 
     .video-section{
-      padding:0 0 5svh;
+      padding:0 0 4svh;
     }
 
     .video-section video{
+      display:block;
       width:100%;
       height:auto;
       max-height:none;
@@ -327,7 +338,7 @@
     }
 
     .gif-section{
-      padding:6svh 0 8svh;
+      padding:4svh 0 6svh;
     }
 
     .gif-section img{
