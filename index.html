@@ -2,432 +2,85 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Web Under Construction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PFC | Portada</title>
 <style>
-  *{box-sizing:border-box}
-  html,body{
-    margin:0;
-    padding:0;
-    background:#ececec;
-    font-family:Arial, Helvetica, sans-serif;
-    overflow-x:hidden;
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background: #fff; }
+  .portada { width: 100%; margin: 0; padding: 0; }
+  .portada img { display: block; width: 100%; height: auto; }
+  .centros-arte { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .centros-arte img { display: block; width: 100%; height: auto; }
+  .tercera-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .tercera-imagen img { display: block; width: 100%; height: auto; }
+  .cuarta-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .cuarta-imagen img { display: block; width: 100%; height: auto; }
+  .quinta-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .quinta-imagen img { display: block; width: 100%; height: auto; }
+  .sexta-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .sexta-imagen img { display: block; width: 100%; max-width: 100%; height: auto; }
+  .septima-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .septima-imagen img { display: block; width: 100%; max-width: 100%; height: auto; }
+  .octava-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .octava-imagen img { display: block; width: 100%; max-width: 100%; height: auto; }
+  .novena-imagen, .decima-imagen { width: 100%; margin: 0; padding: 0; background: #fff; }
+  .novena-imagen img, .decima-imagen img { display: block; width: 100%; max-width: 100%; height: auto; }
+  .white-space { height: 70svh; background: #fff; }
+  .video-section { width: 100%; background: #fff; padding: 0 0 10vh; }
+  .video-section video { display: block; width: 100%; height: auto; max-height: 100svh; object-fit: contain; background: #000; }
+  .gif-section { width: 100%; background: #fff; padding: 10vh 0 12vh; display: flex; justify-content: center; align-items: center; }
+  .gif-section img { display: block; width: 100%; height: auto; object-fit: contain; background: #fff; }
+  @media (max-width: 600px) {
+    .white-space { height: 4svh; }
+    .video-section { padding: 0 0 4svh; }
+    .video-section video { max-height: none; }
+    .gif-section { padding: 4svh 0 6svh; }
+    .gif-section img { max-height: none; }
   }
-
-  body{min-height:100vh}
-
-  .page{
-    min-height:150vh;
-    position:relative;
-    background:
-      radial-gradient(circle at 78% 23%, rgba(255,255,255,.9), rgba(255,255,255,0) 24%),
-      radial-gradient(circle at 24% 66%, rgba(255,255,255,.58), rgba(255,255,255,0) 18%),
-      linear-gradient(180deg, #efefef 0%, #e9e9e9 100%);
-  }
-
-  .hero{
-    position:sticky;
-    top:0;
-    height:100svh;
-    overflow:hidden;
-  }
-
-  .copy{
-    position:absolute;
-    top:8.5vh;
-    left:10.5vw;
-    z-index:20;
-    color:#000;
-    font-weight:900;
-    letter-spacing:-.06em;
-    line-height:.95;
-    text-transform:uppercase;
-    user-select:none;
-    will-change:transform;
-    animation:copyFloat 6s ease-in-out infinite alternate;
-  }
-
-  .copy span{
-    display:block;
-    font-size:clamp(3.1rem, 12.8vw, 6rem);
-    margin-bottom:.17em;
-  }
-
-  .tape{
-    position:absolute;
-    left:-18vw;
-    width:145vw;
-    height:17.5vw;
-    min-height:72px;
-    max-height:116px;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 30%, rgba(0,0,0,.05) 100%),
-      linear-gradient(90deg, #ffe800 0%, #ffe000 12%, #ffea00 35%, #ffd900 65%, #ffe600 100%);
-    box-shadow:
-      0 14px 26px rgba(0,0,0,.11),
-      inset 0 1px 0 rgba(255,255,255,.55),
-      inset 0 -7px 12px rgba(0,0,0,.08);
-    overflow:hidden;
-    transform-origin:center center;
-    will-change:transform;
-  }
-
-  .tape::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(circle at 16% 36%, rgba(255,255,255,.3), transparent 16%),
-      radial-gradient(circle at 44% 65%, rgba(0,0,0,.06), transparent 18%),
-      radial-gradient(circle at 73% 41%, rgba(255,255,255,.22), transparent 13%),
-      linear-gradient(115deg, transparent 0 8%, rgba(255,255,255,.18) 10%, transparent 13%, transparent 26%, rgba(255,255,255,.16) 29%, transparent 32%, transparent 48%, rgba(0,0,0,.05) 52%, transparent 56%, transparent 72%, rgba(255,255,255,.14) 75%, transparent 79%);
-    mix-blend-mode:overlay;
-    opacity:.95;
-    pointer-events:none;
-  }
-
-  .tape::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(255,255,255,.12), transparent 35%, transparent 60%, rgba(0,0,0,.06));
-    pointer-events:none;
-  }
-
-  .tape-track{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    gap:3rem;
-    width:max-content;
-    padding:0 2rem;
-    white-space:nowrap;
-    animation:marquee 18s linear infinite;
-  }
-
-  .tape.reverse .tape-track{
-    animation-direction:reverse;
-    animation-duration:20s;
-  }
-
-  .tape-word{
-    font-size:clamp(1.3rem, 5vw, 2.15rem);
-    line-height:1;
-    font-weight:900;
-    letter-spacing:-.045em;
-    color:#111;
-    text-transform:uppercase;
-    transform:scaleY(1.18);
-  }
-
-  .tape-a{
-    top:38.5vh;
-    transform:rotate(-28deg);
-    animation:tapeAFloat 6s ease-in-out infinite alternate;
-  }
-
-  .tape-b{
-    top:50vh;
-    left:-12vw;
-    width:132vw;
-    height:16.6vw;
-    min-height:68px;
-    max-height:108px;
-    transform:rotate(9deg);
-    z-index:12;
-    animation:tapeBFloat 5.4s ease-in-out infinite alternate;
-  }
-
-  .intersection-glow{
-    position:absolute;
-    left:38vw;
-    top:47vh;
-    width:28vw;
-    height:20vw;
-    border-radius:28px;
-    background:radial-gradient(circle, rgba(255,235,0,.28), rgba(255,235,0,0) 70%);
-    filter:blur(14px);
-    z-index:13;
-    pointer-events:none;
-  }
-
-  .shadow-soft{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:1;
-    background:
-      radial-gradient(circle at 72% 22%, rgba(255,255,255,.34), transparent 18%),
-      radial-gradient(circle at 50% 50%, rgba(0,0,0,.04), transparent 55%);
-  }
-
-  .hint{
-    position:absolute;
-    left:50%;
-    bottom:max(18px, env(safe-area-inset-bottom));
-    transform:translateX(-50%);
-    z-index:25;
-    color:rgba(0,0,0,.48);
-    font-size:.78rem;
-    font-weight:700;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-  }
-
-  @keyframes marquee{
-    from{transform:translateX(0)}
-    to{transform:translateX(-50%)}
-  }
-
-  @keyframes tapeAFloat{
-    from{transform:rotate(-28deg) translateY(0)}
-    to{transform:rotate(-26.8deg) translateY(-6px)}
-  }
-
-  @keyframes tapeBFloat{
-    from{transform:rotate(9deg) translateY(0)}
-    to{transform:rotate(10.2deg) translateY(7px)}
-  }
-
-  @keyframes copyFloat{
-    from{transform:translateY(0)}
-    to{transform:translateY(-4px)}
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    .copy,.tape,.tape-track{animation:none !important}
-  }
-
-  .white-space{
-    height:70svh;
-    background:#fff;
-  }
-
-  .video-section{
-    width:100%;
-    background:#fff;
-    padding:0 0 10vh;
-  }
-
-  .video-section video{
-    display:block;
-    width:100%;
-    height:auto;
-    max-height:100svh;
-    object-fit:contain;
-    background:#000;
-  }
-
-  .gif-section{
-    width:100%;
-    background:#fff;
-    padding:10vh 0 12vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  }
-
-  .gif-section img{
-    display:block;
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    background:#fff;
-  }
-
-  /* ===== VERSIÓN MÓVIL CORREGIDA ===== */
-  @media (max-width: 600px){
-
-    html,body{
-      background:#ececec;
-    }
-
-    /* El hero ocupa exactamente una pantalla:
-       eliminamos el bloque gris extra que aparecía debajo */
-    .page{
-      min-height:100svh;
-    }
-
-    .hero{
-      height:100svh;
-    }
-
-    .copy{
-      top:5.5svh;
-      left:6vw;
-      right:6vw;
-      width:88vw;
-      line-height:.90;
-    }
-
-    .copy span{
-      display:block;
-      margin-bottom:.12em;
-      font-size:clamp(2.25rem, 10.5vw, 3.45rem);
-      max-width:100%;
-    }
-
-    /* "CONSTRUCTION" necesita algo menos de tamaño para entrar completa */
-    .copy span:last-child{
-      font-size:clamp(2rem, 9.4vw, 3.1rem);
-      letter-spacing:-.055em;
-      white-space:nowrap;
-    }
-
-    /* Cintas adaptadas a pantalla estrecha */
-    .tape{
-      left:-42vw;
-      width:190vw;
-      height:22vw;
-      min-height:72px;
-      max-height:90px;
-    }
-
-    .tape-a{
-      top:45svh;
-      transform:rotate(-30deg);
-    }
-
-    .tape-b{
-      top:57svh;
-      left:-34vw;
-      width:176vw;
-      height:21vw;
-      min-height:70px;
-      max-height:88px;
-      transform:rotate(9deg);
-    }
-
-    .tape-track{
-      gap:1.7rem;
-      padding:0 1rem;
-    }
-
-    .tape-word{
-      font-size:clamp(1rem, 5.2vw, 1.45rem);
-    }
-
-    .intersection-glow{
-      left:28vw;
-      top:52svh;
-      width:48vw;
-      height:28vw;
-    }
-
-    .hint{
-      bottom:max(10px, env(safe-area-inset-bottom));
-      font-size:.64rem;
-    }
-
-    /* Solo dejamos una separación muy pequeña antes del vídeo */
-    .white-space{
-      height:4svh;
-    }
-
-    .video-section{
-      padding:0 0 4svh;
-    }
-
-    .video-section video{
-      display:block;
-      width:100%;
-      height:auto;
-      max-height:none;
-      object-fit:contain;
-    }
-
-    .gif-section{
-      padding:4svh 0 6svh;
-    }
-
-    .gif-section img{
-      width:100%;
-      height:auto;
-      max-height:none;
-      object-fit:contain;
-    }
-  }
-
 </style>
 </head>
 <body>
-
-<main class="page">
-  <section class="hero" id="hero">
-    <div class="shadow-soft"></div>
-
-    <div class="copy" id="copy">
-      <span>WEB</span>
-      <span>UNDER</span>
-      <span>CONSTRUCTION</span>
-    </div>
-
-    <div class="intersection-glow"></div>
-
-    <div class="tape tape-a reverse" id="tapeA">
-      <div class="tape-track">
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-      </div>
-    </div>
-
-    <div class="tape tape-b" id="tapeB">
-      <div class="tape-track">
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-        <span class="tape-word">UNDER CONSTRUCTION</span>
-      </div>
-    </div>
-
-    <div class="hint">scroll ↓</div>
+<main>
+  <section class="portada" aria-label="Portada del proyecto">
+    <img src="1_PORTADA.jpg.jpeg" alt="Portada del proyecto arquitectónico" fetchpriority="high">
+  </section>
+  <section class="centros-arte" aria-label="Centros de arte de la isla">
+    <img src="2_centros%20de%20arte%20isla.gif" alt="Animación sobre los centros de arte de la isla" loading="eager">
+  </section>
+  <section class="tercera-imagen" aria-label="Tercera lámina del proyecto">
+    <img src="3_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0001.jpg.jpeg" alt="Tercera lámina del proyecto" loading="eager">
+  </section>
+  <section class="cuarta-imagen" aria-label="Cuarta lámina del proyecto">
+    <img src="4_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0002.jpg.jpeg" alt="Cuarta lámina del proyecto" loading="eager">
+  </section>
+  <section class="quinta-imagen" aria-label="Quinta lámina animada del proyecto">
+    <img src="5_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized_pages-to-jpg-0006.gif" alt="Quinta lámina animada del proyecto" loading="eager">
+  </section>
+  <section class="sexta-imagen" aria-label="Sexta lámina del proyecto">
+    <img src="6_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0003.jpg.jpeg" alt="Sexta lámina del proyecto" loading="eager">
+  </section>
+  <section class="septima-imagen" aria-label="Séptima lámina del proyecto">
+    <img src="7_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0004.jpg.jpeg" alt="Séptima lámina del proyecto" loading="eager">
+  </section>
+  <section class="white-space" aria-hidden="true"></section>
+  <section class="video-section">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="Video%20Project%203.mp4" type="video/mp4">
+      Tu navegador no puede reproducir este vídeo.
+    </video>
+  </section>
+  <section class="gif-section">
+    <img src="AXONOMETRICA.gif" alt="Axonometría animada" loading="lazy">
+  </section>
+  <section class="octava-imagen" aria-label="Octava lámina del proyecto">
+    <img src="8_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0005.jpg.jpeg" alt="Octava lámina del proyecto" loading="lazy">
+  </section>
+  <section class="novena-imagen" aria-label="Lámina 9 del proyecto">
+    <img src="9_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0006.jpg.jpeg" alt="Lámina 9 del proyecto" loading="lazy">
+  </section>
+  <section class="decima-imagen" aria-label="Lámina 10 del proyecto">
+    <img src="10_nuevo%20FORMATO%20MOVIL_organized%20%281%29_organized%20%281%29_page-0007.jpg.jpeg" alt="Lámina 10 del proyecto" loading="lazy">
   </section>
 </main>
-
-<section class="white-space" aria-hidden="true"></section>
-
-<section class="video-section">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="Video%20Project%203.mp4" type="video/mp4">
-    Tu navegador no puede reproducir este vídeo.
-  </video>
-</section>
-
-<section class="gif-section">
-  <img src="AXONOMETRICA.gif" alt="Axonometría animada">
-</section>
-
-<script>
-const hero = document.getElementById('hero');
-const copy = document.getElementById('copy');
-const tapeA = document.getElementById('tapeA');
-const tapeB = document.getElementById('tapeB');
-
-function updateMotion(){
-  const rect = hero.getBoundingClientRect();
-  const total = Math.max(1, hero.parentElement.offsetHeight - window.innerHeight);
-  const p = Math.max(0, Math.min(1, -rect.top / total));
-
-  copy.style.transform = `translateY(${p * -32}px)`;
-  tapeA.style.transform = `rotate(${-28 + p*2.1}deg) translateY(${p * -8}px)`;
-  tapeB.style.transform = `rotate(${9 + p*1.6}deg) translateY(${p * 10}px)`;
-}
-
-window.addEventListener('scroll', updateMotion, {passive:true});
-window.addEventListener('resize', updateMotion);
-updateMotion();
-</script>
-
 </body>
 </html>
